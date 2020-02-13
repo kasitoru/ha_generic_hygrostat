@@ -16,95 +16,47 @@ Copy the contents of `custom_components/generic_hygrostat/` to `<your config dir
 
 ## Configuration variables
 
-**name**
-*(string)(Required)*
+**name** *(string)(Required)*  
+Name of hygrostat.  
+*Default value:* Generic Hygrostat  
 
-Name of hygrostat.
+**dryer** *(string)(Required)*  
+`entity_id` for dryer switch, must be a toggle device. Becomes air humidifier switch when `moist_mode` is set to true.  
 
-*Default value:*
-Generic Hygrostat
+**target_sensor** *(string)(Required)*  
+`entity_id` for a humidity sensor, target_sensor.state must be humidity.  
 
+**min_humidity** *(float)(Optional)*  
+Set minimum set point available.  
+*Default value:* 30  
 
-**dryer**
-*(string)(Required)*
+**max_humidity** *(float)(Optional)*  
+Set maximum set point available.  
+*Default value:* 99  
 
-`entity_id` for dryer switch, must be a toggle device. Becomes air humidifier switch when `moist_mode` is set to true.
+**target_humidity** *(float)(Optional)*  
+Set initial target humidity. Failure to set this variable will result in target humidity being set to null on startup. As of version 0.59, it will retain the target humidity set before restart if available.  
 
+**moist_mode** *(boolean)(Optional)*  
+Set the switch specified in the **dryer** option to be treated as a humidifying device instead of a drying device.  
+*Default value:* false  
 
-**target_sensor**
-*(string)(Required)*
+**min_cycle_duration** *(time | integer)(Optional)*  
+Set a minimum amount of time that the switch specified in the **dryer** option must be in its current state prior to being switched either off or on.  
 
-`entity_id` for a humidity sensor, target_sensor.state must be humidity.
+**dry_tolerance** *(float)(Optional)*  
+Set a minimum amount of difference between the humidity read by the sensor specified in the **target_sensor** option and the target humidity that must change prior to being switched on. For example, if the target humidity is 50 and the tolerance is 5 the dryer will start when the sensor equals or goes above 55.  
+*Default value:* 3  
 
+**moist_tolerance** *(float)(Optional)*  
+Set a minimum amount of difference between the humidity read by the sensor specified in the **target_sensor** option and the target humidity that must change prior to being switched off. For example, if the target humidity is 50 and the tolerance is 5 the dryer will stop when the sensor equals or goes below 45.  
+*Default value:* 3  
 
-**min_humidity**
-*(float)(Optional)*
+**keep_alive** *(time | integer)(Optional)*  
+Set a keep-alive interval. If set, the switch specified in the **dryer** option will be triggered every time the interval elapses. Use with dryers and air humidifiers that shut off if they don’t receive a signal from their remote for a while. Use also with switches that might lose state. The keep-alive call is done with the current valid climate integration state (either on or off).  
 
-Set minimum set point available.
-
-*Default value:*
-30
-
-
-**max_humidity**
-*(float)(Optional)*
-
-Set maximum set point available.
-
-*Default value:*
-99
-
-
-**target_humidity**
-*(float)(Optional)*
-
-Set initial target humidity. Failure to set this variable will result in target humidity being set to null on startup. As of version 0.59, it will retain the target humidity set before restart if available.
-
-
-**moist_mode**
-*(boolean)(Optional)*
-
-Set the switch specified in the **dryer** option to be treated as a humidifying device instead of a drying device.
-
-*Default value:*
-false
-
-
-**min_cycle_duration**
-*(time | integer)(Optional)*
-
-Set a minimum amount of time that the switch specified in the **dryer** option must be in its current state prior to being switched either off or on.
-
-
-**dry_tolerance**
-*(float)(Optional)*
-
-Set a minimum amount of difference between the humidity read by the sensor specified in the **target_sensor** option and the target humidity that must change prior to being switched on. For example, if the target humidity is 50 and the tolerance is 5 the dryer will start when the sensor equals or goes above 55.
-
-*Default value:*
-3
-
-
-**moist_tolerance**
-*(float)(Optional)*
-
-Set a minimum amount of difference between the humidity read by the sensor specified in the **target_sensor** option and the target humidity that must change prior to being switched off. For example, if the target humidity is 50 and the tolerance is 5 the dryer will stop when the sensor equals or goes below 45.
-
-*Default value:*
-3
-
-
-**keep_alive**
-*(time | integer)(Optional)*
-
-Set a keep-alive interval. If set, the switch specified in the **dryer** option will be triggered every time the interval elapses. Use with dryers and air humidifiers that shut off if they don’t receive a signal from their remote for a while. Use also with switches that might lose state. The keep-alive call is done with the current valid climate integration state (either on or off).
-
-
-**initial_hvac_mode**
-*(string)(Optional)*
-
-Set the initial HVAC mode. Valid values are `off` or `dry`. Value has to be double quoted. If this parameter is not set, it is preferable to set a **keep_alive** value. This is helpful to align any discrepancies between **generic_hygrostat** and **dryer** state.
-
+**initial_hvac_mode** *(string)(Optional)*  
+Set the initial HVAC mode. Valid values are `off` or `dry`. Value has to be double quoted. If this parameter is not set, it is preferable to set a **keep_alive** value. This is helpful to align any discrepancies between **generic_hygrostat** and **dryer** state.  
 
 Time for `min_cycle_duration` and `keep_alive` must be set as "hh:mm:ss" or it must contain at least one of the following entries: `days:`, `hours:`, `minutes:`, `seconds:` or `milliseconds:`. Alternatively, it can be an integer that represents time in seconds.
 
