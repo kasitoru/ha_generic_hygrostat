@@ -12,7 +12,7 @@ climate:
 
 ## Installation instructions
 
-Copy the contents of `custom_components/generic_hygrostat/` to `<your config dir>/custom_components/generic_hygrostat/` and restart Home Assistant.
+Copy the contents of `custom_components/generic_hygrostat/` to `<your_config_dir>/custom_components/generic_hygrostat/` and restart Home Assistant.
 
 ## Configuration variables
 
