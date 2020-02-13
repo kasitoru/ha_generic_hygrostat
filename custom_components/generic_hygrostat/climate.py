@@ -56,13 +56,13 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Required(CONF_DRYER): cv.entity_id,
         vol.Required(CONF_SENSOR): cv.entity_id,
         vol.Optional(CONF_MOIST_MODE): cv.boolean,
-        vol.Optional(CONF_MAX_HUMIDITY): vol.Coerce(int),
+        vol.Optional(CONF_MAX_HUMIDITY): vol.Coerce(float),
         vol.Optional(CONF_MIN_DUR): vol.All(cv.time_period, cv.positive_timedelta),
-        vol.Optional(CONF_MIN_HUMIDITY): vol.Coerce(int),
+        vol.Optional(CONF_MIN_HUMIDITY): vol.Coerce(float),
         vol.Optional(CONF_NAME, default=DEFAULT_NAME): cv.string,
-        vol.Optional(CONF_DRY_TOLERANCE, default=DEFAULT_TOLERANCE): vol.Coerce(int),
-        vol.Optional(CONF_MOIST_TOLERANCE, default=DEFAULT_TOLERANCE): vol.Coerce(int),
-        vol.Optional(CONF_TARGET_HUMIDITY): vol.Coerce(int),
+        vol.Optional(CONF_DRY_TOLERANCE, default=DEFAULT_TOLERANCE): vol.Coerce(float),
+        vol.Optional(CONF_MOIST_TOLERANCE, default=DEFAULT_TOLERANCE): vol.Coerce(float),
+        vol.Optional(CONF_TARGET_HUMIDITY): vol.Coerce(float),
         vol.Optional(CONF_KEEP_ALIVE): vol.All(cv.time_period, cv.positive_timedelta),
         vol.Optional(CONF_INITIAL_HVAC_MODE): vol.In(
             [HVAC_MODE_DRY, HVAC_MODE_OFF]
@@ -186,7 +186,7 @@ class GenericHygrostat(ClimateDevice, RestoreEntity):
                         self._target_humidity,
                     )
                 else:
-                    self._target_humidity = int(float(old_state.attributes[ATTR_HUMIDITY]))
+                    self._target_humidity = float(old_state.attributes[ATTR_HUMIDITY])
             if not self._hvac_mode and old_state.state:
                 self._hvac_mode = old_state.state
 
@@ -313,7 +313,7 @@ class GenericHygrostat(ClimateDevice, RestoreEntity):
     def _async_update_humidity(self, state):
         """Update hygrostat with latest state from sensor."""
         try:
-            self._cur_humidity = int(float(state.state))
+            self._cur_humidity = float(state.state)
         except ValueError as ex:
             _LOGGER.error("Unable to update from sensor: %s", ex)
 

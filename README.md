@@ -26,15 +26,15 @@ Name of hygrostat.
 **target_sensor** *(string)(Required)*  
 `entity_id` for a humidity sensor, target_sensor.state must be humidity.  
 
-**min_humidity** *(integer)(Optional)*  
+**min_humidity** *(float)(Optional)*  
 Set minimum set point available.  
 *Default value:* 30  
 
-**max_humidity** *(integer)(Optional)*  
+**max_humidity** *(float)(Optional)*  
 Set maximum set point available.  
 *Default value:* 99  
 
-**target_humidity** *(integer)(Optional)*  
+**target_humidity** *(float)(Optional)*  
 Set initial target humidity. Failure to set this variable will result in target humidity being set to null on startup. As of version 0.59, it will retain the target humidity set before restart if available.  
 
 **moist_mode** *(boolean)(Optional)*  
@@ -44,11 +44,11 @@ Set the switch specified in the **dryer** option to be treated as a humidifying 
 **min_cycle_duration** *(time | integer)(Optional)*  
 Set a minimum amount of time that the switch specified in the **dryer** option must be in its current state prior to being switched either off or on.  
 
-**dry_tolerance** *(integer)(Optional)*  
+**dry_tolerance** *(float)(Optional)*  
 Set a minimum amount of difference between the humidity read by the sensor specified in the **target_sensor** option and the target humidity that must change prior to being switched on. For example, if the target humidity is 50 and the tolerance is 5 the dryer will start when the sensor equals or goes above 55.  
 *Default value:* 3  
 
-**moist_tolerance** *(integer)(Optional)*  
+**moist_tolerance** *(float)(Optional)*  
 Set a minimum amount of difference between the humidity read by the sensor specified in the **target_sensor** option and the target humidity that must change prior to being switched off. For example, if the target humidity is 50 and the tolerance is 5 the dryer will stop when the sensor equals or goes below 45.  
 *Default value:* 3  
 
