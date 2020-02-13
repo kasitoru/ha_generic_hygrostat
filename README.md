@@ -82,3 +82,14 @@ climate:
       minutes: 3
     initial_hvac_mode: "off"
 ```
+
+## Known bugs
+
+- Graph display does not work. The reason may be in one of the following files:
+  - [home-assistant-polymer/src/components/state-history-chart-line.js](https://github.com/home-assistant/home-assistant-polymer/blob/dev/src/components/state-history-chart-line.js)
+  - [home-assistant-polymer/src/panels/lovelace/cards/hui-thermostat-card.ts](https://github.com/home-assistant/home-assistant-polymer/blob/dev/src/panels/lovelace/cards/hui-thermostat-card.ts)
+  - [home-assistant-polymer/src/data/history.ts](https://github.com/home-assistant/home-assistant-polymer/blob/dev/src/data/history.ts)
+- No [HVAC action](https://developers.home-assistant.io/docs/en/entity_climate.html#hvac-action) for moist mode (need HVAC_MODE_MOIST).
+- Missing [temperature_unit()](https://github.com/avdeevsv91/ha_generic_hygrostat/blob/master/custom_components/generic_hygrostat/climate.py#L219) causes an [NotImplementedError](https://github.com/home-assistant/home-assistant/blob/dev/homeassistant/components/climate/__init__.py#L265). In fact, this is not necessary, the temperature is not used.
+
+If you can fix it, please do it!
