@@ -1,11 +1,12 @@
 # Generic Hygrostat
+<a href="/generic_hygrostat.png"><img src="/generic_hygrostat.png" align="left" width="300" height="392" alt="Generic Hygrostat" /></a>
 The `generic_hygrostat` climate platform is a hygrostat implemented in Home Assistant. It uses a sensor and a switch connected to a dryer or air humidifier under the hood. When in dryer mode, if the measured humidity is above than the target humidity, the dryer will be turned on and turned off when the required humidity is reached. When in air moist mode, if the measured humidity is below than the target humidity, the air humidifier will be turned on and turned off when required humidity is reached. One Generic Hygrostat entity can only control one switch. If you need to activate two switches, one for a dryer and one for an air humidifier, you will need two Generic Hygrostat entities.
 
 ```yaml
 # Example configuration.yaml entry
 climate:
   - platform: generic_hygrostat
-    name: Bathroom
+    name: Ventilation
     dryer: switch.bathroom_fan
     target_sensor: sensor.bathroom_humidity
 ```
@@ -67,7 +68,7 @@ Currently the `generic_hygrostat` climate platform supports 'dry' and 'off' hvac
 ```yaml
 climate:
   - platform: generic_hygrostat
-    name: Bathroom
+    name: Ventilation
     dryer: switch.bathroom_fan
     target_sensor: sensor.bathroom_humidity
     min_humidity: 35
