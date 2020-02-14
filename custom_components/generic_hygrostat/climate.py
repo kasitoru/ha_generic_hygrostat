@@ -8,7 +8,7 @@ from homeassistant.const import TEMP_CELSIUS
 from homeassistant.components.climate import PLATFORM_SCHEMA, ClimateDevice
 from homeassistant.components.climate.const import (
     ATTR_HUMIDITY,
-	CURRENT_HVAC_DRY,
+    CURRENT_HVAC_DRY,
     CURRENT_HVAC_IDLE,
     CURRENT_HVAC_OFF,
     HVAC_MODE_DRY,
