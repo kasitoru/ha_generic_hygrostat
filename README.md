@@ -1,4 +1,4 @@
-# Generic Hygrostat
+# Generic Hygrostat [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
 <a href="/generic_hygrostat.png"><img src="/generic_hygrostat.png" align="left" width="300" height="392" alt="Generic Hygrostat" /></a>
 The `generic_hygrostat` climate platform is a hygrostat implemented in Home Assistant. It uses a sensor and a switch connected to a dryer or air humidifier under the hood. When in dryer mode, if the measured humidity is above than the target humidity, the dryer will be turned on and turned off when the required humidity is reached. When in air moist mode, if the measured humidity is below than the target humidity, the air humidifier will be turned on and turned off when required humidity is reached. One Generic Hygrostat entity can only control one switch. If you need to activate two switches, one for a dryer and one for an air humidifier, you will need two Generic Hygrostat entities.
 
@@ -12,6 +12,8 @@ climate:
 ```
 
 ## Installation instructions
+
+The preferred installation method is via [Home Assistant Community Store](https://hacs.xyz) (HACS). But you can also do it manually:
 
 Copy the contents of `custom_components/generic_hygrostat/` to `<your_config_dir>/custom_components/generic_hygrostat/` and restart Home Assistant.
 

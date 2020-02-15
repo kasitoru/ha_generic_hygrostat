@@ -1,0 +1,6 @@
+{
+    "name": "Generic Hygrostat",
+	"render_readme": true,
+	"domains": ["climate"],
+	"homeassistant": "0.91.0"
+}
