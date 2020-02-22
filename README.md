@@ -1,6 +1,6 @@
 # Generic Hygrostat
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 [![Donate](https://img.shields.io/badge/donate-Yandex-red.svg)](https://money.yandex.ru/to/4100110221014297)
 
 <a href="https://github.com/avdeevsv91/ha_generic_hygrostat/blob/master/generic_hygrostat.png"><img src="https://github.com/avdeevsv91/ha_generic_hygrostat/raw/master/generic_hygrostat.png" align="left" width="300" height="392" alt="Generic Hygrostat" /></a>
