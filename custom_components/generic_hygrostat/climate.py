@@ -9,9 +9,11 @@ from homeassistant.components.climate import PLATFORM_SCHEMA, ClimateDevice
 from homeassistant.components.climate.const import (
     ATTR_HUMIDITY,
     CURRENT_HVAC_DRY,
+    CURRENT_HVAC_FAN,
     CURRENT_HVAC_IDLE,
     CURRENT_HVAC_OFF,
     HVAC_MODE_DRY,
+    HVAC_MODE_FAN_ONLY,
     HVAC_MODE_OFF,
     SUPPORT_TARGET_HUMIDITY,
 )
@@ -65,7 +67,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
         vol.Optional(CONF_TARGET_HUMIDITY): vol.Coerce(float),
         vol.Optional(CONF_KEEP_ALIVE): vol.All(cv.time_period, cv.positive_timedelta),
         vol.Optional(CONF_INITIAL_HVAC_MODE): vol.In(
-            [HVAC_MODE_DRY, HVAC_MODE_OFF]
+            [HVAC_MODE_DRY, HVAC_MODE_FAN_ONLY, HVAC_MODE_OFF]
         ),
     }
 )
@@ -135,7 +137,7 @@ class GenericHygrostat(ClimateDevice, RestoreEntity):
         self._keep_alive = keep_alive
         self._hvac_mode = initial_hvac_mode
         self._saved_target_humidity = target_humidity
-        self._hvac_list = [HVAC_MODE_DRY, HVAC_MODE_OFF]
+        self._hvac_list = [HVAC_MODE_DRY, HVAC_MODE_FAN_ONLY, HVAC_MODE_OFF]
         self._active = False
         self._cur_humidity = None
         self._humidity_lock = asyncio.Lock()
@@ -236,6 +238,8 @@ class GenericHygrostat(ClimateDevice, RestoreEntity):
 
         Need to be one of CURRENT_HVAC_*.
         """
+        if self._hvac_mode == HVAC_MODE_FAN_ONLY:
+            return CURRENT_HVAC_FAN
         if self._hvac_mode == HVAC_MODE_OFF:
             return CURRENT_HVAC_OFF
         if not self._is_device_active:
@@ -257,6 +261,9 @@ class GenericHygrostat(ClimateDevice, RestoreEntity):
         if hvac_mode == HVAC_MODE_DRY:
             self._hvac_mode = HVAC_MODE_DRY
             await self._async_control_humidification(force=True)
+        elif hvac_mode == HVAC_MODE_FAN_ONLY:
+            self._hvac_mode = HVAC_MODE_FAN_ONLY
+            await self._async_dryer_turn_on()
         elif hvac_mode == HVAC_MODE_OFF:
             self._hvac_mode = HVAC_MODE_OFF
             if self._is_device_active:
@@ -329,7 +336,7 @@ class GenericHygrostat(ClimateDevice, RestoreEntity):
                     self._target_humidity,
                 )
 
-            if not self._active or self._hvac_mode == HVAC_MODE_OFF:
+            if not self._active or self._hvac_mode == HVAC_MODE_FAN_ONLY or self._hvac_mode == HVAC_MODE_OFF:
                 return
 
             if not force and time is None:

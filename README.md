@@ -65,7 +65,7 @@ Set a minimum amount of difference between the humidity read by the sensor speci
 Set a keep-alive interval. If set, the switch specified in the **dryer** option will be triggered every time the interval elapses. Use with dryers and air humidifiers that shut off if they don’t receive a signal from their remote for a while. Use also with switches that might lose state. The keep-alive call is done with the current valid climate integration state (either on or off).  
 
 **initial_hvac_mode** *(string)(Optional)*  
-Set the initial HVAC mode. Valid values are `off` or `dry`. Value has to be double quoted. If this parameter is not set, it is preferable to set a **keep_alive** value. This is helpful to align any discrepancies between **generic_hygrostat** and **dryer** state.  
+Set the initial HVAC mode. Valid values are `off`, `fan_only` or `dry`. Value has to be double quoted. If this parameter is not set, it is preferable to set a **keep_alive** value. This is helpful to align any discrepancies between **generic_hygrostat** and **dryer** state.  
 
 Time for `min_cycle_duration` and `keep_alive` must be set as "hh:mm:ss" or it must contain at least one of the following entries: `days:`, `hours:`, `minutes:`, `seconds:` or `milliseconds:`. Alternatively, it can be an integer that represents time in seconds.
 
