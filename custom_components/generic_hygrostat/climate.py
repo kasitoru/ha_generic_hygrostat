@@ -5,7 +5,7 @@ import logging
 import voluptuous as vol
 
 from homeassistant.const import TEMP_CELSIUS
-from homeassistant.components.climate import PLATFORM_SCHEMA, ClimateDevice
+from homeassistant.components.climate import PLATFORM_SCHEMA, ClimateEntity
 from homeassistant.components.climate.const import (
     ATTR_HUMIDITY,
     CURRENT_HVAC_DRY,
@@ -108,7 +108,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     )
 
 
-class GenericHygrostat(ClimateDevice, RestoreEntity):
+class GenericHygrostat(ClimateEntity, RestoreEntity):
     """Representation of a Generic Hygrostat device."""
 
     def __init__(
