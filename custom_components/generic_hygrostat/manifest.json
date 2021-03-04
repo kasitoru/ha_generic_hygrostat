@@ -4,5 +4,6 @@
   "documentation": "https://github.com/avdeevsv91/ha_generic_hygrostat",
   "requirements": [],
   "dependencies": ["sensor", "switch"],
-  "codeowners": []
+  "codeowners": [],
+  "version": "2021.03.04"
 }
