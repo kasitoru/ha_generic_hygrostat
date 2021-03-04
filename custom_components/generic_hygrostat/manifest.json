@@ -5,5 +5,5 @@
   "requirements": [],
   "dependencies": ["sensor", "switch"],
   "codeowners": [],
-  "version": "master"
+  "version": "2021.03.04"
 }
