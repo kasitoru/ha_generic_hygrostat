@@ -5,7 +5,7 @@
 
 ## This code is no longer supported. Please use the official [generic_hygrostat](https://www.home-assistant.io/integrations/generic_hygrostat/) integration.
 
-<a href="https://github.com/avdeevsv91/ha_generic_hygrostat/blob/master/generic_hygrostat.png"><img src="https://github.com/avdeevsv91/ha_generic_hygrostat/raw/master/generic_hygrostat.png" align="left" width="300" height="392" alt="Generic Hygrostat" /></a>
+<a href="https://github.com/kasitoru/ha_generic_hygrostat/blob/master/generic_hygrostat.png"><img src="https://github.com/kasitoru/ha_generic_hygrostat/raw/master/generic_hygrostat.png" align="left" width="300" height="392" alt="Generic Hygrostat" /></a>
 The `generic_hygrostat` climate platform is a hygrostat implemented in Home Assistant. It uses a sensor and a switch connected to a dryer or air humidifier under the hood. When in dryer mode, if the measured humidity is above than the target humidity, the dryer will be turned on and turned off when the required humidity is reached. When in air moist mode, if the measured humidity is below than the target humidity, the air humidifier will be turned on and turned off when required humidity is reached. One Generic Hygrostat entity can only control one switch. If you need to activate two switches, one for a dryer and one for an air humidifier, you will need two Generic Hygrostat entities.
 
 ```yaml
@@ -100,7 +100,7 @@ climate:
   - [home-assistant-polymer/src/data/history.ts](https://github.com/home-assistant/home-assistant-polymer/blob/dev/src/data/history.ts)
 - ~~Need add [HVAC mode](https://developers.home-assistant.io/docs/en/entity_climate.html#hvac-modes) and [HVAC action](https://developers.home-assistant.io/docs/en/entity_climate.html#hvac-action) for moist mode (HVAC_MODE_MOIST and CURRENT_HVAC_MOIST). File: [home-assistant/homeassistant/components/climate/const.py](https://github.com/home-assistant/home-assistant/blob/dev/homeassistant/components/climate/const.py).~~ PR ([home-assistant/architecture](https://github.com/home-assistant/architecture)) [#350](https://github.com/home-assistant/architecture/issues/350).
 - ~~The [state_color](https://www.home-assistant.io/lovelace/entities/#state_color) attribute does not work.~~ PR ([home-assistant/home-assistant-polymer](https://github.com/home-assistant/home-assistant-polymer)) [#4962](https://github.com/home-assistant/home-assistant-polymer/pull/4962).
-- Missing [temperature_unit()](https://github.com/avdeevsv91/ha_generic_hygrostat/blob/master/custom_components/generic_hygrostat/climate.py#L219) causes an [NotImplementedError](https://github.com/home-assistant/home-assistant/blob/dev/homeassistant/components/climate/__init__.py#L265). In fact, this is not necessary, the temperature is not used.
+- Missing [temperature_unit()](https://github.com/kasitoru/ha_generic_hygrostat/blob/master/custom_components/generic_hygrostat/climate.py#L219) causes an [NotImplementedError](https://github.com/home-assistant/home-assistant/blob/dev/homeassistant/components/climate/__init__.py#L265). In fact, this is not necessary, the temperature is not used.
 - Unnecessary values in entity attributes (min_temp, max_temp and current_temperature).
 
 If you can fix it, please do it!
